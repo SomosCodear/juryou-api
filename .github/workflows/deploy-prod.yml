@@ -1,0 +1,26 @@
+on:
+  push:
+    branches:
+      - master
+name: Deploy production
+jobs:
+  deploy:
+    name: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.14.0'
+      - name: Install Dependencies
+        run: yarn install --frozen-lockfile
+      - name: Deploy to Prod
+        run: yarn deploy:prod
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          COGNITO_POOL_REGION: ${{ secrets.COGNITO_POOL_REGION }}
+          COGNITO_POOL_ID: ${{ secrets.COGNITO_POOL_ID }}
+          COGNITO_CLIENT_ID: ${{ secrets.COGNITO_CLIENT_ID }}
