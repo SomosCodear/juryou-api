@@ -1,0 +1,17 @@
+{
+  "name": "juryou-api",
+  "version": "1.0.0",
+  "main": "handler.js",
+  "license": "MIT",
+  "author": "Agustin Carrasco <agustin at codear dot com>",
+  "scripts": {
+    "deploy:prod": "sls deploy --stage production"
+  },
+  "devDependencies": {
+    "eslint": "6.8.0",
+    "eslint-config-airbnb-base": "14.1.0",
+    "eslint-plugin-import": "^2.20.1",
+    "serverless": "^1.72.0",
+    "serverless-dotenv-plugin": "^2.4.2"
+  }
+}
