@@ -1,12 +1,13 @@
 const AWS = require('aws-sdk');
+const snakecaseKeys = require('snakecase-keys');
 
 const handleInvoice = async (event) => {
   const data = JSON.parse(event.body);
   console.log(data);
 
-  // Create publish parameters
+  const message = snakecaseKeys(data);
   const params = {
-    Message: JSON.stringify(data),
+    Message: JSON.stringify(message),
     TopicArn: process.env.SNS_ARN,
   };
 
