@@ -18,6 +18,7 @@ provider:
             - Ref: "AWS::AccountId"
             - ":${self:custom.sendInvoiceTopic}"
   httpApi:
+    cors: true
     authorizers:
       juryouApiAuthorizer:
         identitySource: $request.header.Authorization
